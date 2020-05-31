@@ -5,7 +5,7 @@ import Login from '../views/login'
 import Error from '../views/404'
 import store from '../store/index'
 
-Vue.use(Router)
+Vue.use(Router);
 
 let baseRoute =  [
   {
@@ -30,10 +30,10 @@ router.beforeEach((to, from, next)=>{
     router.push({path: '/404',params:{ id:'1'}});
   }
   next();
-})
+});
 
 router.afterEach(()=>{
-  //浏览器刷新情况下
+  // 浏览器刷新情况下
   if(router.currentRoute.matched.length < 2){
     let allTage = JSON.parse(sessionStorage.allTage)
     router.addRoutes(Fullpath)

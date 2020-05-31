@@ -12,6 +12,11 @@ import 'font-awesome/css/font-awesome.min.css'
 import MyPlugin from './extend-ui/index'
 import 'babel-polyfill'
 
+
+import VueCodeMirror from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
+Vue.use(VueCodeMirror)
+
 Vue.use(MyPlugin)
 Vue.use(Vuex)
 Vue.use(ElementUI)
