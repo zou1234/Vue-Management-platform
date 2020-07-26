@@ -2,7 +2,7 @@
   <div class="example">
     <div class="codemirror">
       <codemirror
-        v-model="code"
+        v-model="code_"
         :options="cmOption"
         @cursorActivity="onCmCursorActivity"
         @ready="onCmReady"
@@ -54,51 +54,18 @@
   export default {
     name: 'codemirror-example-vue',
     title: 'Mode: text/x-vue & Theme: base16-dark',
+    props:{
+      code:{
+        type: String,
+        default: "",
+      }
+    },
     components: {
       codemirror
     },
     data() {
       return {
-        code: dedent`
-          <template>
-            <h1>Hello World!</h1>
-            <codemirror v-model="code" :options="cmOption" />
-          </template>
-          <script>
-            // import 'some-codemirror-resource'
-            export default {
-              data() {
-                return {
-                  code: 'const A = 10',
-                  cmOption: {
-                    tabSize: 4,
-                    styleActiveLine: true,
-                    lineNumbers: true,
-                    line: true,
-                    foldGutter: true,
-                    styleSelectedText: true,
-                    mode: 'text/javascript',
-                    keyMap: "sublime",
-                    matchBrackets: true,
-                    showCursorWhenSelecting: true,
-                    theme: "monokai",
-                    extraKeys: { "Ctrl": "autocomplete" },
-                    hintOptions:{
-                      completeSingle: false
-                    }
-                  }
-                }
-              }
-            }
-          ${'<\/script>'}
-          <style lang="scss">
-            @import './sass/mixins';
-            @import './sass/variables';
-            main {
-              position: relative;
-            }
-          </style>
-        `,
+        code_: '',
         cmOption: {
           tabSize: 4,
           foldGutter: true,
@@ -132,6 +99,9 @@
       onCmBlur(codemirror) {
         console.debug('onCmBlur', codemirror)
       }
+    },
+    created() {
+      this.code_ = dedent(this.code)
     }
   }
 </script>

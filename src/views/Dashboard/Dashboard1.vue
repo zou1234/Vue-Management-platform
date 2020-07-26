@@ -24,6 +24,8 @@
   import 'codemirror/mode/javascript/javascript.js'
   // theme css
   import 'codemirror/theme/base16-dark.css'
+
+
   // more codemirror resources
   // import 'codemirror/some-resource...'
   export default {
@@ -67,7 +69,9 @@
           lineNumbers: true,
           line: true,
           // more codemirror options, 更多 codemirror 的高级配置...
-        }
+        },
+        test1: 1,
+        test2: this.test1
       }
     },
     methods: {
@@ -146,6 +150,7 @@
       }
     },
     mounted() {
+      console.log('11', this.test2)
       console.log('this is current codemirror object', this.codemirror)
       this.init();
       // you can use this.codemirror to do something...
