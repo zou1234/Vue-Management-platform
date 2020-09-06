@@ -4,7 +4,8 @@ import Dashboar1 from '../views/Dashboard/Dashboard1'
 import Dashboar2 from '../views/Dashboard/Dashboard2'
 import Dashboar3 from '../views/Dashboard/Dashboard3'
 import Layouts1 from '../views/Layouts/Layouts1'
-import Layouts2 from '../views/Layouts/Layouts2'
+// import Layouts2 from '../views/Layouts/Layouts2'
+import Layouts2 from '../views/chart'
 import components from '../views/components/index'
 import HelloWorld from '@/components/ms-content'
 
@@ -36,7 +37,6 @@ export default[
           }
         ]
       },
-
       {
         path: "/Layouts",
         name: "Layouts",
@@ -53,12 +53,23 @@ export default[
           }
         ]
       },
-
       {
         path: "/components",
         name: "components",
         component: components,
-      }
+      },
+      {
+        path: "/chart",
+        name: "chart",
+        component: Layouts,
+        children:[
+          {
+            path: "/chart/chart1",
+            name: "chart",
+            component: require('../views/chart/index'),
+          }
+        ]
+      },
     ]
   }
 ]

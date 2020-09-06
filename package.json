@@ -15,8 +15,10 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "dedent": "^0.7.0",
     "element-ui": "^2.4.11",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.5.1",
     "vue": "^2.5.2",
     "vue-carousel": "^0.17.0",
     "vue-codemirror": "^4.0.6",
@@ -61,7 +63,6 @@
     "http-proxy-middleware": "^0.17.3",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
-    "jquery": "^3.3.1",
     "nightwatch": "^0.9.12",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.11.0",
