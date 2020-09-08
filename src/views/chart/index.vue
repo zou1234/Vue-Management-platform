@@ -6,9 +6,7 @@
 <template>
   <div>
     <es-codemirror :code="code"></es-codemirror>
-<div>w3wewewew</div>
   </div>
-  <!--<es-codemirror></es-codemirror>-->
 </template>
 
 <script>
@@ -17,10 +15,11 @@
   export default {
     name: "tesst",
     data() {
-      // let codeText = require(`./index.htm`);
+      let codeText = require(`./index.htm`);
+      debugger
       return {
-        // code: codeText
-        code: ''
+        code: codeText
+        // code: '<es-codemirror :code="code"><div>232323</div></es-codemirror>'
       };
     },
     components: {

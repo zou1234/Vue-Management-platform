@@ -11,17 +11,17 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       "*": {
-        target: "http://192.168.2.163:9999/",
-        changeOrigin: true,
-        router: {
+        // target: "http://192.168.2.163:9999/",
+        // changeOrigin: true,
+        // router: {
           // "/carapply/query.do": "http://192.168.10.179:8080",
           "/scene/removeScene.do": "http://172.16.0.6:8080",
-        }
+        // }
       }
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '10.11.0.101', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,

@@ -1,6 +1,6 @@
 <template>
   <div class="ms-header">
-    <div class="ms-headerTitle">邹文丰前端博客</div>
+    <!--<div class="ms-headerTitle">邹文丰前端博客</div>-->
   </div>
 </template>
 
