@@ -52,10 +52,6 @@ module.exports = {
     rules: [
       // ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
-        test: /\.(txt|htm)$/,
-        loader: "raw-loader"
-      },
-      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
@@ -68,6 +64,10 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+      },
+      {
+        test: /\.(txt|htm)$/,
+        loader: "raw-loader"
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

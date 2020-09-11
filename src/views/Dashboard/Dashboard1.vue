@@ -101,7 +101,7 @@
           if (document.documentElement && document.documentElement.clientHeight) {
             winHeight = document.documentElement.clientHeight;
           }
-          height = winHeight*0.68
+          var height = winHeight*0.68
           editor.setSize('100%', height);
           document.getElementById("exhibition").style.height= height +"px";
         }

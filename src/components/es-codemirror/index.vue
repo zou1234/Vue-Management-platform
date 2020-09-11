@@ -64,10 +64,7 @@
         name: 'codemirror-example-vue',
         title: 'Mode: text/x-vue & Theme: base16-dark',
         props: {
-            code: {
-                type: String,
-                default: ''
-            }
+            code: ""
         },
         components: {
             codemirror,

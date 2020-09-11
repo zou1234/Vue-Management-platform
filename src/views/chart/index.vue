@@ -4,9 +4,7 @@
     @Date: 2019-12-12
 -->
 <template>
-  <div>
-    <es-codemirror :code="code"></es-codemirror>
-  </div>
+  <es-codemirror :code="code"></es-codemirror>
 </template>
 
 <script>
@@ -16,10 +14,11 @@
     name: "tesst",
     data() {
       let codeText = require(`./index.htm`);
-      debugger
+      let a = codeText.default;
+      // console.log(a);
       return {
-        code: codeText
-        // code: '<es-codemirror :code="code"><div>232323</div></es-codemirror>'
+        code: a
+        // code: '<div>数据范围比例</div>'
       };
     },
     components: {
