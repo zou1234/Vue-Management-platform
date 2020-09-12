@@ -59,7 +59,8 @@
     import 'codemirror/addon/fold/markdown-fold.js'
     import 'codemirror/addon/fold/xml-fold.js'
 
-    import codeRender from "@@/../code-render";
+    // import codeRender from "@@/../code-render";
+    import codeRender from "../../components/code-render";
     export default {
         name: 'codemirror-example-vue',
         title: 'Mode: text/x-vue & Theme: base16-dark',
@@ -106,7 +107,7 @@
             onCmBlur(codemirror) {
                 // console.debug('onCmBlur', codemirror)
                 this.dedentCode = codemirror.getValue();
-                debugger
+
             }
         },
         created(){

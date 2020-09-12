@@ -4,7 +4,7 @@
 
 <script>
 
-  import esCodemirror from '@/components/es-codemirror'
+  import esCodemirror from '@/components/es-codemirror-code'
   export default {
     name: "Dashboar3",
     components:{

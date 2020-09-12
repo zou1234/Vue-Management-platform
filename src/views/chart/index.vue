@@ -4,21 +4,30 @@
     @Date: 2019-12-12
 -->
 <template>
-  <es-codemirror :code="code"></es-codemirror>
+  <div>
+    <es-codemirror :code="code"></es-codemirror>
+  </div>
+
 </template>
 
 <script>
-  import esCodemirror from "@/components/es-codemirror";
+  import esCodemirror from "@/components/es-codemirror-code/index";
 
   export default {
     name: "tesst",
     data() {
       let codeText = require(`./index.htm`);
-      let a = codeText.default;
+
+debugger
+      let codes = `<template>
+                       <div>熟蜀都华氏度深度胡</div>
+                   </template>
+                   <style>div{color: red}</style>`;
+      // let a = codeText.default;
       // console.log(a);
       return {
-        code: a
-        // code: '<div>数据范围比例</div>'
+        code: codeText
+        // code: codes
       };
     },
     components: {
