@@ -4,7 +4,7 @@
 
 <script>
 
-  import esCodemirror from '@/components/es-codemirror-code'
+  import esCodemirror from '@/components/es-codemirror-vue'
   export default {
     name: "Dashboar3",
     components:{

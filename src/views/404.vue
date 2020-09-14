@@ -1,7 +1,7 @@
 <template>
     <div style="font-size: 25px">
       404页面不存在
-      <button @click="hehe">ddffdfdfdf</button>
+<!--      <button @click="hehe">ddffdfdfdf</button>-->
     </div>
 </template>
 

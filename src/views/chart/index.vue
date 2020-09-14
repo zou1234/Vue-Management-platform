@@ -11,14 +11,12 @@
 </template>
 
 <script>
-  import esCodemirror from "@/components/es-codemirror-code/index";
+  import esCodemirror from "@/components/es-codemirror-vue/index";
 
   export default {
     name: "tesst",
     data() {
       let codeText = require(`./index.htm`);
-
-debugger
       let codes = `<template>
                        <div>熟蜀都华氏度深度胡</div>
                    </template>

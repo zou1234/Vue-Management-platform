@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import Fullpath from '../router/fullpath'
+  import Fullpath from '../../router/fullpath'
     export default {
       name: "ms-tag",
       data(){
