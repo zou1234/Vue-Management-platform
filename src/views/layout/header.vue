@@ -2,7 +2,7 @@
   <main class="ms-header">
     <div class="ms-headerTitle">
       <img src="@/assets/layout/logo.png" alt="/">
-      <span>邹文丰博客</span>
+      <span>积累是高效的源泉！</span>
     </div>
   </main>
 </template>
