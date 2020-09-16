@@ -10,12 +10,16 @@
               v-for="(item, index) in data"
               :key="index"
       >
-        <div class="frame-box">
-          <div class="frame-box__header" :style="{background: `rgba${item.color}`, border: `rgba${item.color}`}">
-            <img src="./img/test.png" alt="/">
+        <div class="frame-box"  @click="handleClickOpenCode(item)">
+          <div class="frame-box__header"
+               :style="{
+               background: `rgba${item.color}`,
+               border: `rgba${item.color}`}"
+          >
+            <img src="@/assets/test.png" alt="/">
           </div>
           <footer>
-            <h2>{{item.title}}</h2>
+            <h2>{{index + 1 + "、" +item.title}}</h2>
             <p>{{item.detail}}</p>
           </footer>
         </div>
@@ -25,6 +29,7 @@
 </template>
 
 <script>
+  let codeText = require("./code/1.htm");
     export default {
         name: "",
 
@@ -37,7 +42,8 @@
               data:[
                 {
                   title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
+                  detail: "详细描述话不能太多，就是就是",
+                  imgUrl: "",
                 },
                 {
                   title: "这是一个标题这是一个标题这是一个标题",
@@ -87,6 +93,16 @@
                   g = Math.floor(Math.random()*256),
                   b = Math.floor(Math.random()*256);
             return '('+r+','+g+','+b+')';
+          },
+
+          handleClickOpenCode(item){
+            let routeData = this.$router.resolve({
+              name: "code-details",
+              query: {
+                code: require("./code/1.htm")
+              },
+            });
+            window.open(window.location.origin + routeData.href);
           }
         },
 

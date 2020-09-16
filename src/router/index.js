@@ -7,7 +7,13 @@ Vue.use(Router);
 
 let baseRoute =  [
   businessComponent,
-  tools
+  tools,
+  {
+    path: "/code-details",
+    name: "code-details",
+    meta: { icon: "el-icon-bank-card", isShow: false },
+    component: () => import("@/components/es-code-detail"),
+  }
 ];
 
 let router = new Router({

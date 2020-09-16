@@ -11,7 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 import MyPlugin from './extend-ui/index'
 import 'babel-polyfill'
-
+import '@/assets/style/common.scss'
 
 import VueCodeMirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'

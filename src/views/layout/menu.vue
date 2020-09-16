@@ -3,10 +3,10 @@
     <el-menu
       :default-active="activeIndex"
       class="el-menu-vertical-demo"
-      background-color="#545c64"
+      background-color="transparent"
       text-color="#fff"
       :router="true"
-      active-text-color="#ffd04b"
+      active-text-color="yellow"
     >
       <el-submenu   v-for="(item, index) in $router.options.routes"
                      :key="index"
@@ -31,10 +31,6 @@
 </template>
 
 <script>
-  // import routerList from '@/router'
-
-  // console.log(routerList);
-
   export default {
       name: "ms-left",
       data(){
@@ -46,13 +42,7 @@
       methods:{
 
       },
-      created() {
-        console.log(this.$router.options.routes);
-        // routerList.forEach((val)=>{
-        //   if(val.path === this.$route.path)
-        //     this.activeIndex = this.$route.path
-        // });
-      },
+      created() {},
     }
 </script>
 
@@ -62,8 +52,7 @@
     background: #001938;
     box-sizing: border-box;
     width: 100%;
-    height: calc(100vh - 150px);
-
+    height: calc(100vh - 65px);
   }
 
   /deep/.el-menu-vertical-demo{

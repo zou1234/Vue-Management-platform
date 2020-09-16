@@ -1,10 +1,10 @@
 <!--
-    @Modular：编辑代码
+    @Modular：代码编辑器
     @Author: zouwf
     @Date: 2020-07-13
 -->
 <template>
-    <div class="example">
+    <div class="es-codemirror">
         <div class="codemirror">
             <codemirror
                 v-model="code"
@@ -15,9 +15,9 @@
                 @blur="onCmBlur"
             />
         </div>
-        <pre class="pre">
-            <code-render v-model="code"></code-render>
-        </pre>
+        <div class="pre">
+          <code-render v-model="code"></code-render>
+        </div>
     </div>
 </template>
 
@@ -105,9 +105,7 @@
                 console.debug('onCmFocus', codemirror)
             },
             onCmBlur(codemirror) {
-                // console.debug('onCmBlur', codemirror)
                 this.dedentCode = codemirror.getValue();
-
             }
         },
         created(){
@@ -117,26 +115,30 @@
 </script>
 
 <style lang="scss" scoped>
-    .example {
-        display: flex;
-        height: 100%;
-        .codemirror,
-        .pre {
-            width: 50%;
-            height: 100%;
-            margin: 0;
-            overflow: auto;
-        }
-        .pre {
-            display: block;
-            padding: 1rem;
-            font-size: 14px;
-            line-height: 1.6;
-            word-break: break-all;
-            word-wrap: break-word;
-        }
+    .es-codemirror {
+      display: flex;
+      height: 100vh;
+
+      & > div{
+        flex: 1;
+      }
+
+      .pre {
+        display: block;
+        margin: 0;
+        overflow: auto;
+        padding: 1rem;
+        font-size: 14px;
+        line-height: 1.6;
+        word-break: break-all;
+        word-wrap: break-word;
+      }
+
+      /deep/ .CodeMirror{
+        height: 100vh!important;
+      }
+
     }
-    /deep/.CodeMirror{
-        height: 100vh
-    }
+
+
 </style>

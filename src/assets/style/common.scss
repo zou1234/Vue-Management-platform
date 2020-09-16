@@ -1,0 +1,44 @@
+/**
+ * @author zouwf
+ * @date 2020-06-21
+ * 用于全局业务（公共样式的修改 比如：修改组件库样式或者全局通用类名）
+ */
+
+/*字体
+==============*/
+@font-face{
+  font-family: 'Heavy'; 
+  src: url('../../assets/font/PingFangHeavy.ttf');
+}
+@font-face{
+  font-family: 'Bold'; 
+  src: url('../../assets/font/PingFangBold.ttf');
+}
+@font-face{
+  font-family: 'ExtraLight'; 
+  src: url('../../assets/font/PingFangExtraLight.ttf');
+}
+@font-face{
+  font-family: 'Light'; 
+  src: url('../../assets/font/PingFangLight.ttf');
+}
+@font-face{
+  font-family: 'Medium'; 
+  src: url('../../assets/font/PingFangMedium.ttf');
+}
+@font-face{
+  font-family: 'Regular'; 
+  src: url('../../assets/font/PingFangRegular.ttf');
+}
+@font-face{
+  font-family: 'cikers'; 
+  src: url('../../assets/font/cikers.ttf');
+}
+@font-face{
+  font-family: 'bahnschrift'; 
+  src: url('../../assets/font/bahnschrift.ttf');
+}
+@font-face{
+  font-family: 'DS-DIGIT';
+  src: url('../font/ds-digit.ttf');
+}
