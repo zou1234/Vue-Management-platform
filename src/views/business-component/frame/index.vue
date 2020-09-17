@@ -16,7 +16,7 @@
                background: `rgba${item.color}`,
                border: `rgba${item.color}`}"
           >
-            <img src="@/assets/test.png" alt="/">
+            <img :src="item.imgUrl" alt="/">
           </div>
           <footer>
             <h2>{{index + 1 + "、" +item.title}}</h2>
@@ -41,37 +41,9 @@
             return {
               data:[
                 {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是",
-                  imgUrl: "",
-                },
-                {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
-                },
-                {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
-                },
-                {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
-                },
-                {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
-                },
-                {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
-                },
-                {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
-                },
-                {
-                  title: "这是一个标题这是一个标题这是一个标题",
-                  detail: "详细描述话不能太多，就是就是"
+                  title: "外壳",
+                  detail: "纯图片组成的外壳，宽高和标题，可自由配置！！！",
+                  imgUrl: require('./image/frame1.png'),
                 },
               ]
             };

@@ -1,31 +1,143 @@
 <!--
-    此处填写文件描述
-    @author:
-    @createTime: 2019/10/16 16:43
-    @功能:情报下拉框例子
+    @Modular：模块框
+    @Author: zouwf
+    @Date: 2020-06-12
 -->
 <template>
-  <el-tabs v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="wf" name="first">用户管理</el-tab-pane>
-    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
-  </el-tabs>
+  <div class="es-frame" :style="{'width': width, 'height': height}">
+    <!-- 边框自适应 -->
+    <div class="es-line es-top__line"></div>
+    <div class="es-line es-right__line"></div>
+    <div class="es-line es-left__line"></div>
+    <div class="es-line es-bottom__line"></div>
+
+    <!-- 内容 -->
+    <div class="es-frame__content">
+      <el-scrollbar>
+        <div class="es-frame__title">{{title}}</div>
+        <slot></slot>
+      </el-scrollbar>
+    </div>
+  </div>
 </template>
+
 <script>
   export default {
-    data() {
-      return {
-        activeName: 'second'
-      };
+    name: "index",
+
+    //接收父页面传过来的属性
+    props: {
+      title:{
+        type: String,
+        default: "这是一个标题"
+      },
+      width: {
+        type: String,
+        default: "400px"
+      },
+      height: {
+        type: String,
+        default: "460px"
+      },
     },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      }
+
+    //组件注册
+    components: {},
+
+    //页面数据绑定
+    data() {
+      return {};
+    },
+
+    //计算属性
+    computed: {},
+
+    //方法
+    methods: {},
+
+    //生命周期 -- 创建
+    created() {},
+
+    // 生命周期 -- 挂载
+    mounted() {
     }
   };
 </script>
+
+<style lang="scss" scoped>
+
+  .es-frame{
+    min-height: 250px;
+    min-width: 300px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 18px 3px 20px 20px;
+    margin: 0 auto;
+    background: url("/static/business-component/frame/frame1/top-left.png") no-repeat left 2px,
+    url("/static/business-component/frame/frame1/top-right.png") no-repeat right 0,
+    url("/static/business-component/frame/frame1/bottom-left.png") no-repeat left bottom,
+    url("/static/business-component/frame/frame1/bottom-right.png") no-repeat right bottom;
+  }
+  .es-frame__content{
+    width: 100%;
+    height: 100%;
+  }
+  .el-scrollbar{ width: 98%; }
+  .es-frame__title{
+    text-align: center;
+    font-family: MicrosoftYaHei-Bold;
+    font-size: 20px;
+    font-weight: 800;
+    font-stretch: normal;
+    letter-spacing: 1px;
+    background: -webkit-linear-gradient(top,#e5ecf6,#739bd0);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .es-line{
+    position: absolute;
+  }
+  .es-top__line{
+    width: calc(100% - 252px);
+    height: 30px;
+    background: url("/static/business-component/frame/frame1/top.png") repeat;
+    top: 2px;
+    left: 131px;
+  }
+  .es-right__line{
+    width:30px ;
+    height: calc(100% - 335px);
+    background: url("/static/business-component/frame/frame1/right.png") repeat;
+    top: 261px;
+    right: -8px;
+  }
+  .es-bottom__line{
+    width: calc(100% - 279px);
+    height: 30px;
+    background: url("/static/business-component/frame/frame1/bottom.png") repeat;
+    bottom: -8px;
+    left: 40px;
+  }
+  .es-left__line{
+    width:25px ;
+    height: calc(100% - 433px);
+    background: url("/static/business-component/frame/frame1/left.png") repeat;
+    top: 211px;
+    left: 0;
+  }
+  .es-frame__content{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 10px 0;
+  }
+</style>
+
+
+
+
 
 
 

@@ -15,7 +15,7 @@
                 @blur="onCmBlur"
             />
         </div>
-        <div class="pre">
+        <div class="pre" :style="{background: preBackground}">
           <code-render v-model="code"></code-render>
         </div>
     </div>
@@ -65,7 +65,13 @@
         name: 'codemirror-example-vue',
         title: 'Mode: text/x-vue & Theme: base16-dark',
         props: {
-            code: ""
+            // 代码
+            code: "",
+            // 效果区域背景颜色
+            preBackground: {
+              type: String,
+              default: "#f3f3f3"
+            }
         },
         components: {
             codemirror,
@@ -132,6 +138,7 @@
         line-height: 1.6;
         word-break: break-all;
         word-wrap: break-word;
+        background: #f3f3f3;
       }
 
       /deep/ .CodeMirror{
