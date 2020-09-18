@@ -29,62 +29,61 @@
 </template>
 
 <script>
-  let codeText = require("./code/1.htm");
-    export default {
-        name: "",
+export default {
+  name: '',
 
-        props: {},
+  props: {},
 
-        components: {},
+  components: {},
 
-        data() {
-            return {
-              data:[
-                {
-                  title: "外壳",
-                  detail: "纯图片组成的外壳，宽高和标题，可自由配置！！！",
-                  imgUrl: require('./image/frame1.png'),
-                },
-              ]
-            };
-        },
-
-        //计算属性
-        computed: {},
-
-        //方法
-        methods: {
-          getColor(){
-            this.data.forEach((val)=>{
-              this.$set(val, "color", this.getRgb())
-            })
-          },
-
-          getRgb(){
-            const r = Math.floor(Math.random()*256),
-                  g = Math.floor(Math.random()*256),
-                  b = Math.floor(Math.random()*256);
-            return '('+r+','+g+','+b+')';
-          },
-
-          handleClickOpenCode(item){
-            let routeData = this.$router.resolve({
-              name: "code-details",
-              query: {
-                code: require("./code/1.htm")
-              },
-            });
-            window.open(window.location.origin + routeData.href);
-          }
-        },
-
-        created() {
-          this.getColor();
-        },
-
-        mounted() {
+  data () {
+    return {
+      data: [
+        {
+          title: '外壳',
+          detail: '纯图片组成的外壳，宽高和标题，可自由配置！！！',
+          imgUrl: require('./image/frame1.png')
         }
-    };
+      ]
+    }
+  },
+
+  // 计算属性
+  computed: {},
+
+  // 方法
+  methods: {
+    getColor () {
+      this.data.forEach((val) => {
+        this.$set(val, 'color', this.getRgb())
+      })
+    },
+
+    getRgb () {
+      const r = Math.floor(Math.random() * 256),
+        g = Math.floor(Math.random() * 256),
+        b = Math.floor(Math.random() * 256)
+      return '(' + r + ',' + g + ',' + b + ')'
+    },
+
+    handleClickOpenCode (item) {
+      let routeData = this.$router.resolve({
+        name: 'code-details',
+        query: {
+          code: require('./code/1.htm')
+        }
+      })
+      window.open(window.location.origin + routeData.href)
+    }
+  },
+
+  created () {
+    this.getColor()
+  },
+
+  mounted () {
+  }
+}
 </script>
 
 <style lang="scss" scoped>
