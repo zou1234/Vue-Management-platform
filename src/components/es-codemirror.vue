@@ -16,6 +16,7 @@
 
 <script>
   import dedent from 'dedent'
+  import echarts from 'echarts'
   import { codemirror } from 'vue-codemirror'
   // base style
   import 'codemirror/lib/codemirror.css'

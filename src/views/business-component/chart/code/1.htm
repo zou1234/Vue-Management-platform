@@ -1,0 +1,238 @@
+<!--
+    @Describe：折线柱状图混合
+    @Author: zouwf
+-->
+<template>
+  <div :style="{ width: width, height: height }" ref="containerEcharts"></div>
+</template>
+
+<script>
+  // import echarts from "echarts";
+  export default {
+    name: "single-line-chart",
+    //接收父组件传过来的属性
+    props: {
+      // 宽
+      width: {
+        type: [Number, String],
+        default: '800px',
+      },
+      // 高度
+      height: {
+        type: [Number, String],
+        default: '400px',
+      },
+      // 数据
+      data: {
+        type: [Array, Object],
+        default() {
+          return {
+            name: ["月度灭火作战起数", "月度灭火作战平均值"],
+            xData: ['2016', '2017', '2018', '2019', '2020'],
+            lineData: [150, 290, 210, 280, 290, 460],
+            barData: [220, 200, 150, 80, 70, 110, 130]
+          }
+        }
+      },
+
+      // 单位
+      unit: {
+        type: String,
+        default: '起',
+      },
+
+      // formatter重置
+      formatter: {
+        type: Function
+      }
+    },
+
+    //组件注册
+    components: {},
+
+    // 数据
+    data() {
+      return {};
+    },
+
+    //计算属性
+    computed: {},
+
+    //方法
+    methods: {
+      init() {
+        const ecBar = echarts.init(this.$refs["containerEcharts"]);
+        const {xData, lineData, name, barData} = this.data;
+        const {unit} = this,
+          option = {
+            tooltip: {
+              trigger: 'axis',
+              backgroundColor: "#fff",
+              extraCssText: "box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);",
+              shadowColor: '#1eb597',
+              axisPointer: {
+                lineStyle: {
+                  color: '#d0d7dd'
+                }
+              },
+              formatter: this.formatter ? this.formatter : (data) => {
+                console.log(data);
+                return `<div class="formatter" style="">
+                                            <h3 class="formatter-title">${data[0].axisValue}年</h3>
+                                            <div class="formatter-item">
+                                                ${data[0].marker}<span>${data[0].value + unit}</span>
+                                            </div>
+                                              <div class="formatter-item">
+                                                ${data[1].marker}<span>${data[1].value + unit}</span>
+                                            </div>
+                                        </div>`
+              }
+            },
+            legend: {
+              data: name,
+              textStyle: {
+                color: '#666666',
+                fontFamily: "微软雅黑",
+                fontSize: 14
+              },
+              left: 'center',
+              bottom: 10
+            },
+            grid: {
+              x: 10,
+              y: 20,
+              x2: 25,
+              y2: 45,
+              borderWidth: 0,
+              containLabel: true
+            },
+            calculable: true,
+            xAxis: [{
+              type: 'category',
+              boundaryGap: false,
+              splitLine: {
+                show: false
+              },
+              axisLabel: {
+                interval: 0,
+                rotate: 0,
+                margin: 18,
+                textStyle: {
+                  color: '#666',
+                  fontFamily: "微软雅黑",
+                  fontSize: 16
+                }
+              },
+              axisLine: {
+                show: false
+              },
+              axisTick: {
+                show: false,
+              },
+              data: xData
+            }],
+            yAxis: [{
+              type: 'value',
+              axisLabel: {
+                margin: 18,
+                textStyle: {
+                  color: '#666',
+                  fontFamily: "微软雅黑",
+                  fontSize: 16
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#e6e6e6",
+                  type: 'dashed'
+                }
+              },
+              axisLine: {
+                show: false,
+                lineStyle: {
+                  color: "#e6e6e6",
+                  type: 'dashed'
+                }
+              }
+            }],
+            series: [{
+              name: name[0],
+              type: 'line',
+              smooth: true,
+              symbol: 'circle',
+              symbolSize: 12,
+              showAllSymbol: true,
+              itemStyle: {
+                normal: {
+                  color: '#558ef6',
+                  borderColor: '#558ef6',
+                  borderWidth: 1,
+                  shadowBlur: 0
+                },
+                emphasis: {
+                  color: '#fff',
+                  borderColor: '#558ef6',
+                  borderWidth: 2,
+                  shadowColor: '#558ef6',
+                  shadowBlur: 16
+                }
+              },
+              lineStyle: {
+                normal: {
+                  color: '#558ef6',
+                  width: 2,
+                  shadowBlur: 5,
+                  shadowColor: '#558ef6',
+                }
+              },
+              data: lineData
+            }, {
+              name: name[1],
+              data: barData,
+              type: 'bar',
+              itemStyle: {
+                normal: {
+                  color: '#4bc4ac'
+                }
+              },
+              barGap: '-100%',
+              barWidth: 25,
+              animation: false,
+            }
+            ]
+          };
+        ecBar.setOption(option);
+      }
+    },
+
+    // 创建
+    created() {
+      this.$nextTick(() => {
+        this.init();
+      });
+    },
+
+    //  挂载
+    mounted() {
+    },
+
+    // 监听
+    watch: {}
+  };
+</script>
+
+<style lang="scss" scoped>
+  /deep/ .formatter {
+    padding: 0 20px 0 0;
+    text-align: left;
+  .formatter-title {
+    color: rgba(0, 0, 0, .65);
+    font-size: 14px;
+  }
+  .formatter-item {
+    color: rgba(0, 0, 0, .85);
+    font-size: 16px;
+  }
+  }
+</style>

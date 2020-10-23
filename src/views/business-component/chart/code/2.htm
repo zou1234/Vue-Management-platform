@@ -1,0 +1,204 @@
+<!--
+    @Describe：折线图单个
+    @Author: zouwf
+-->
+<template>
+  <div :style="{ width: width, height: height }" ref="containerEcharts"></div>
+</template>
+
+<script>
+  // import echarts from "echarts";
+  export default {
+    name: "single-line-chart",
+    //接收父组件传过来的属性
+    props: {
+      // 宽
+      width: {
+        type: [Number, String],
+        default: '800px',
+      },
+      // 高度
+      height: {
+        type: [Number, String],
+        default: '400px',
+      },
+      // 数据
+      data: {
+        type: [Array, Object],
+        default(){
+          return{
+            name: '综合任务救援年度总量',
+            xData: ['2016', '2017', '2018', '2019', '2020'],
+            yData: [150, 290, 210, 280, 290, 460],
+          }
+        }
+      },
+
+      // formatter重置
+      formatter: {
+        type: Function
+      }
+    },
+
+    //组件注册
+    components: {},
+
+    // 数据
+    data() {
+      return {
+
+      };
+    },
+
+    //计算属性
+    computed: {},
+
+    //方法
+    methods: {
+      init(){
+        const ecBar = echarts.init(this.$refs["containerEcharts"]);
+        let { xData, yData, name } = this.data,
+          option = {
+            tooltip: {
+              trigger: 'axis',
+              backgroundColor: "#fff",
+              extraCssText: "box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);",
+              shadowColor: '#1eb597',
+              axisPointer: {
+                lineStyle: {
+                  color: '#d0d7dd'
+                }
+              },
+              formatter: this.formatter ? this.formatter : (data) =>{
+                return `<div style="padding:0 20px 0 0;text-align: left">
+                                        <h3 style="color: rgba(0,0,0, .65);font-size: 14px;">${data[0].axisValue}年</h3>
+                                        ${data[0].marker}<span style="color: rgba(0,0,0, .85);font-size: 16px;">${data[0].value}次</span>
+                                    </div>`
+              }
+            },
+            legend: {
+              show: true,
+              textStyle: {
+                color: '#666666',
+                fontFamily: "微软雅黑",
+                fontSize: 14
+              },
+              left: 'center',
+              bottom: 10,
+              itemGap: 10,
+              itemWidth: 14,
+              itemHeight: 14,
+              icon: "circle"
+            },
+            grid: {
+              x: 10,
+              y: 20,
+              x2: 25,
+              y2: 45,
+              borderWidth: 0,
+              containLabel: true
+            },
+            calculable: true,
+            xAxis: [{
+              type: 'category',
+              boundaryGap: false,
+              splitLine: {
+                show: false
+              },
+              axisLabel: {
+                interval: 0,
+                rotate: 0,
+                textStyle: {
+                  color: '#666',
+                  fontFamily: "微软雅黑",
+                  fontSize: 16
+                }
+              },
+              axisLine: {
+                show: false
+              },
+              axisTick: {
+                show: false,
+              },
+              data: xData
+            }],
+            yAxis: [{
+              type: 'value',
+              axisLabel: {
+                textStyle: {
+                  color: '#666',
+                  fontFamily: "微软雅黑",
+                  fontSize: 16
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#e6e6e6",
+                  type: 'dashed'
+                }
+              },
+              axisLine: {
+                show: false,
+                lineStyle: {
+                  color: "#e6e6e6",
+                  type: 'dashed'
+                }
+              }
+            }],
+            series: [{
+              name: name,
+              type: 'line',
+              smooth: true,
+              symbol: 'circle',
+              symbolSize: 2,
+              showAllSymbol: true,
+              itemStyle: {
+                normal: {
+                  color: '#1eb597',
+                  borderColor: '#1eb597',
+                  borderWidth: 1,
+                  shadowBlur: 0
+                },
+                emphasis: {
+                  color: '#fff',
+                  borderColor: '#1eb597',
+                  borderWidth: 2,
+                  // shadowColor: 'rgba(25, 253, 255, .6)',
+                  shadowColor: 'rgba(25, 253, 255, .6)',
+                  shadowBlur: 16
+                }
+              },
+
+              lineStyle: {
+                normal: {
+                  color: '#1eb597',
+                  width: 2,
+                  shadowBlur: 5,
+                  shadowColor: '#1eb597',
+                }
+              },
+              data: yData
+            }]
+          };
+        ecBar.setOption(option);
+      }
+    },
+
+    // 创建
+    created() {
+      this.$nextTick(()=>{
+        this.init();
+      });
+    },
+
+    //  挂载
+    mounted() {
+    },
+
+    // 监听
+    watch: {}
+  };
+</script>
+
+<style lang="scss" scoped></style>

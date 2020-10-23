@@ -1,0 +1,227 @@
+<!--
+    @Describe：表单模板 - 双列
+    @Author: zouwf
+-->
+<template>
+  <el-form class="v-form-single"
+           ref="ruleForm"
+           :rules="rules"
+           :model="sizeForm"
+           label-width="100px"
+           label-suffix="："
+  >
+    <el-row>
+      <el-col :span="12">
+        <!-- 活动名称 -->
+        <el-form-item label="活动名称" prop="name">
+          <el-input v-model="sizeForm.name" placeholder="请输入活动名称"></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <!-- 活动区域 -->
+        <el-form-item label="活动区域" prop="area" >
+          <el-select  v-model="sizeForm.area" placeholder="请选择时间单位"  style="width: 100%">
+            <el-option
+              v-for="item in areaField"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="12">
+        <!-- 活动名称 -->
+        <el-form-item label="活动名称" prop="name">
+          <el-input v-model="sizeForm.name" placeholder="请输入活动名称"></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <!-- 活动区域 -->
+        <el-form-item label="活动区域" prop="area" >
+          <el-select  v-model="sizeForm.area" placeholder="请选择时间单位"  style="width: 100%">
+            <el-option
+              v-for="item in areaField"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="12">
+        <!-- 活动名称 -->
+        <el-form-item label="活动名称" prop="name">
+          <el-input v-model="sizeForm.name" placeholder="请输入活动名称"></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <!-- 活动区域 -->
+        <el-form-item label="活动区域" prop="area" >
+          <el-select  v-model="sizeForm.area" placeholder="请选择时间单位"  style="width: 100%">
+            <el-option
+              v-for="item in areaField"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="12">
+        <!-- 活动时间 -->
+        <el-form-item label="活动时间">
+          <el-date-picker
+            style="width: 100%;"
+            v-model="sizeForm.date"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+          >
+          </el-date-picker>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <!-- 活动性质 -->
+        <el-form-item label="活动性质">
+          <el-select  v-model="sizeForm.activity" placeholder="请选择时间单位" style="width: 100%">
+            <el-option
+              v-for="item in activityType"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="12">
+        <!-- 手机 -->
+        <el-form-item label="手机">
+          <el-input placeholder="请输入手机号码" v-model="sizeForm.phone">
+            <template slot="prepend">+86</template>
+          </el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <!-- 时长 -->
+        <el-form-item label="时长">
+          <el-row type="flex" :gutter="10">
+            <el-col :span="4">
+              <el-select  v-model="sizeForm.unit" placeholder="请选择时间单位">
+                <el-option
+                  v-for="item in timeUnit"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="20">
+              <el-input placeholder="请输入时长" v-model="sizeForm.timeCount"></el-input>
+            </el-col>
+          </el-row>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="24">
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit('ruleForm')">立即创建</el-button>
+          <el-button>取消</el-button>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+  </el-form>
+</template>
+
+<script>
+  export default {
+    name: "form-single",
+    data() {
+      return {
+        sizeForm: {
+          name: "",
+          area: "",
+          date: "",
+          activity: "",
+          phone: "",
+          timeCount: "",
+          unit: "M",
+        },
+        rules: {
+          name: [
+            { required: true, message: "请输入活动名称", trigger: "blur" },
+            { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+          ],
+          area: [{ required: true, message: "请选择活动区域", trigger: "blur" }]
+        },
+        areaField: [
+          {
+            value: "SiMing",
+            label: "思明区"
+          },
+          {
+            value: "HuLi",
+            label: "湖里区"
+          }
+        ],
+        activityType: [
+          {
+            value: "ThemeActivity",
+            label: "线上主题活动"
+          },
+          {
+            value: "OutdoorActivity",
+            label: "户外活动"
+          }
+        ],
+        timeUnit: [
+          {
+            value: "M",
+            label: "分钟"
+          },
+          {
+            value: "H",
+            label: "小时"
+          },
+          {
+            value: "D",
+            label: "天"
+          }
+        ]
+      };
+    },
+    methods: {
+      onSubmit(formName) {
+        this.$refs[formName].validate(valid => {
+          if (valid) {
+            alert("submit!");
+          } else {
+            console.log("error submit!!");
+            return false;
+          }
+        });
+      }
+    }
+  };
+</script>
+<style>
+  .v-form-single{
+    padding: 20px;
+  }
+</style>

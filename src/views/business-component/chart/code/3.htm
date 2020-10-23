@@ -1,0 +1,211 @@
+<!--
+    @Describe：常规饼图
+    @Author: zouwf
+    @Date:  2020/10/20
+-->
+<template>
+  <div :style="{ width: width, height: height }" ref="containerEcharts"></div>
+</template>
+
+<script>
+  // import echarts from "echarts";
+  export default {
+    name: "single-line-chart",
+
+    props: {
+      // 数据
+      data: {
+        type: [Array, Object],
+        default() {
+          return [
+            {'name': '洪涝灾害', 'value': 53},
+            {'name': '地质灾害', 'value': 94},
+            {'name': '交通事故', 'value': 84},
+            {'name': '火灾事故', 'value': 112},
+            {'name': '非煤矿山', 'value': 132},
+            {'name': '危化工贸', 'value': 111},
+            {'name': '雨雪冰冻', 'value': 155},
+            {'name': '疫情处置', 'value': 112},
+            {'name': '其他', 'value': 167},
+          ]
+        }
+      },
+
+      // 宽
+      width: {
+        type: [Number, String],
+        default: '460px',
+      },
+
+      // 高度
+      height: {
+        type: [Number, String],
+        default: '400px',
+      },
+
+      // 控制饼图各项描述线显示
+      islabelLine:{
+        type: Boolean,
+        default: true
+      },
+
+      // legend 距离底部的距离
+      legendBottom: {
+        type: [Number, String],
+        default: 40,
+      },
+
+      // 单位
+      unit:{
+        type: String,
+        default: '起',
+      },
+
+      // 重置饼图每一项描述
+      lineFormatter: {
+        type: Function
+      },
+
+      // 颜色
+      color:{
+        type: Array,
+        default(){
+          return ['#558ef6', '#66cdb8', '#7585a2', '#f7c739', '#ff6a4d', '#83d0ef', '#f5ac3c', '#a285d2', '#46a9a8']
+        }
+      },
+
+      // 饼图类型
+      radius:{
+        type: [Array, Object],
+        default(){
+          return ['0', '40%']
+        }
+      },
+
+      // 扇区圆心角展现
+      // 1、'radius' 扇区圆心角展现数据的百分比，半径展现数据的大小，
+      // 2、'area' 所有扇区圆心角相同，仅通过半径展现数据大小。
+      roseType:{
+        default: false
+      }
+
+    },
+
+    mixins: [],
+
+    //组件注册
+    components: {},
+
+    // 数据
+    data() {
+      return {};
+    },
+
+    //计算属性
+    computed: {},
+
+    //方法
+    methods: {
+      init() {
+        let { islabelLine, data, legendBottom, unit,
+          lineFormatter, color, radius, roseType} = this;
+        let ecPie = echarts.init(this.$refs["containerEcharts"]),
+          option = {
+            color: color,
+            legend: {
+              show: true,
+              itemWidth: 10,
+              itemHeight: 10,
+              textStyle: {
+                color: "#666666",
+                fontSize: 14,
+                fontFamily: "微软雅黑"
+              },
+              icon: 'circle',
+              left: "center",
+              bottom: legendBottom
+            },
+            grid: {
+              borderWidth: 0,
+              x: '20%',
+              y: '0%',
+              x2: '2%',
+              y2: '20%'
+            },
+            series: [{
+              type: 'pie',
+              radius: radius,
+              center: ['50%', '45%'],
+              selectedMode: false,
+              startAngle: '-35',
+              selectedOffset: 3,
+              roseType: roseType,
+              itemStyle: {
+                normal: {
+                  shadowBlur: 30,
+                  shadowColor: 'rgba(0, 0, 0, 0.1)',
+                  labelLine: {
+                    length: 10,
+                    length2: 20,
+                    normal: {
+                      lineStyle: {
+                        width: 1,
+                      }
+                    }
+                  }
+                }
+              },
+              data: data,
+              label: {
+                normal: {
+                  show: islabelLine,
+                  textStyle: {
+                    color: '#cacdd2',
+                    fontFamily: "ft-stxihei",
+                    fontSize: 16
+                  },
+                  formatter: lineFormatter ? lineFormatter : (params) =>{
+                    return '{white|' + params.name + '}{blue|'+ '\n' + params.value + unit + '}';
+                  },
+                  rich: {
+                    white: {
+                      color: '#666',
+                      align: 'center',
+                      fontSize: 14,
+                      height: 20,
+                      lineHeight: 20,
+                      fontFamily: "ft-stxihei"
+                    },
+                    blue: {
+                      color: '#7196d6',
+                      fontSize: 14,
+                      height: 20,
+                      lineHeight: 20,
+                      fontFamily: "ft-stxihei"
+                    }
+                  }
+                }
+              },
+            }]
+          };
+        ecPie.setOption(option);
+      }
+    },
+
+    // 创建
+    created() {
+      this.$nextTick(() => {
+        this.init();
+      });
+    },
+    //  挂载
+    mounted() {
+    },
+
+    // 监听
+    watch: {}
+  };
+</script>
+
+<style lang="scss" scoped></style>
+

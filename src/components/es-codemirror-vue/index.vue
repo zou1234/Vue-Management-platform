@@ -5,19 +5,25 @@
 -->
 <template>
     <div class="es-codemirror">
-        <div class="codemirror">
+      <el-row>
+        <el-col :span="12">
+          <div class="codemirror">
             <codemirror
-                v-model="code"
-                :options="cmOption"
-                @cursorActivity="onCmCursorActivity"
-                @ready="onCmReady"
-                @focus="onCmFocus"
-                @blur="onCmBlur"
+              v-model="code"
+              :options="cmOption"
+              @cursorActivity="onCmCursorActivity"
+              @ready="onCmReady"
+              @focus="onCmFocus"
+              @blur="onCmBlur"
             />
-        </div>
-        <div class="pre" :style="{background: preBackground}">
-          <code-render v-model="code"></code-render>
-        </div>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="pre" :style="{background: preBackground}">
+            <code-render v-model="code"></code-render>
+          </div>
+        </el-col>
+      </el-row>
     </div>
 </template>
 
@@ -59,7 +65,6 @@ import 'codemirror/addon/fold/indent-fold.js'
 import 'codemirror/addon/fold/markdown-fold.js'
 import 'codemirror/addon/fold/xml-fold.js'
 
-// import codeRender from "@@/../code-render";
 import codeRender from '../../components/code-render'
 export default {
   name: 'codemirror-example-vue',
@@ -120,32 +125,58 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .es-codemirror {
-      display: flex;
       height: 100vh;
 
       & > div{
-        flex: 1;
+        width: 100%;
+        box-sizing: border-box;
+        vertical-align: top;
+        height: 100vh;
       }
 
       .pre {
-        display: block;
         margin: 0;
         overflow: auto;
         padding: 1rem;
-        font-size: 20px;
         line-height: 1.6;
         word-break: break-all;
         word-wrap: break-word;
         background: #f3f3f3;
+        height: 100vh;
+        box-sizing: border-box;
       }
 
       /deep/ .CodeMirror{
         height: 100vh!important;
-        font-size: 20px;
+        font-size: 15px;
       }
-
     }
 
+    /*滚动条*/
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 10px;
+    }
+
+    /*定义滚动条轨道 内阴影+圆角*/
+    ::-webkit-scrollbar-track {
+      /*背景内阴影*/
+      border-radius: 10px;
+    }
+
+    /*定义滑块 内阴影+圆角*/
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #66b1ff;
+    }
+
+    /*滑块hover效果*/
+    ::-webkit-scrollbar-thumb:hover {
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      background: #66b1ff
+    }
 </style>
